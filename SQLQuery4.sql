@@ -57,8 +57,17 @@ DELETE FROM STUDENTS
  WHERE ID=3
 
 
- 
-SELECT * FROM STUDENTS
+ /*
+SELECT S.* ,
+       F.DepartmentName
+FROM STUDENTS S
+LEFT JOIN FACULTY F ON S.DepartmentID = F.DepartmentID
+*/
+
+SELECT S.FirstName ,
+       F.DepartmentName
+FROM STUDENTS S
+JOIN FACULTY F ON S.DepartmentID = F.DepartmentID
 
 
 ALTER TABLE STUDENTS
@@ -78,9 +87,8 @@ SELECT * FROM FACULTY
 INSERT INTO FACULTY
 (DepartmentName)
 VALUES
-('Computer Science'),
-('Mathematics'),
-('Physics')
+('Medical Science')
+
 
 
 
@@ -100,3 +108,106 @@ VALUES
 -- ONE TO MANY 
 -- ONE TO ONE
 -- MANY TO MANY
+
+
+SELECT *
+FROM STUDENTS
+
+
+SELECT COUNT(*)
+FROM STUDENTS
+
+
+SELECT COUNT(DISTINCT FirstName)
+FROM STUDENTS
+
+
+SELECT SUM(AGE)
+FROM STUDENTS
+
+SELECT AVG(AGE)
+FROM STUDENTS
+
+
+SELECT MIN(GPA)
+FROM STUDENTS
+
+SELECT MAX(GPA)
+FROM STUDENTS
+
+
+SELECT FirstName + ' - ' + Eamil as FullInfo from STUDENTS
+
+
+SELECT * FROM STUDENTS
+WHERE GPA > 0.01
+ORDER BY GPA DESC
+
+SELECT * FROM STUDENTS
+WHERE GPA > 0.01
+ORDER BY GPA ASC
+
+
+SELECT COUNT(FirstName), FirstName
+FROM STUDENTS
+GROUP BY FirstName
+
+
+SELECT FirstName, LEN(FirstName)
+FROM STUDENTS
+
+-- სტრინგის ფუნქციები
+SELECT LEN('AAA')
+SELECT TRIM(' AAA ')
+SELECT LTRIM(' AAA ')
+SELECT RTRIM(' AAA ')
+
+
+SELECT REPLACE(N'გიორგი', N'გ', N'G')
+SELECT SUBSTRING('HELLO', 2, 3)
+
+SELECT LEFT('HELLO', 2)
+SELECT RIGHT('HELLO', 2)
+
+
+SELECT UPPER('george')
+
+
+SELECT LOWER('georgE')
+
+
+
+--დაასელექტეთ ისეთი სტუდენტების სია რომელსაც ფაკულტეტის სახელი აქვს 5 სიმბოლოზე მეტი
+
+
+--like '%Science%'
+
+
+SELECT s.FirstName , f.DepartmentName
+from STUDENTS s
+join FACULTY f on s.DepartmentID = f.DepartmentID
+where f.DepartmentName like '%Science%'
+
+
+
+
+
+SELECT SYSDATETIME()
+SELECT GETDATE()
+
+SELECT DATEPART(YEAR, '2025-04-01')
+SELECT DATEPART(MONTH, '2025-04-01')
+SELECT DATEPART(DAY, '2025-04-01')
+SELECT DATEPART(WEEK, '2025-04-01')
+
+
+SELECT YEAR('2025-01-20')
+
+SELECT DATEDIFF(MONTH, '2020-04-01', '2026-04-01')
+SELECT DATEDIFF(YEAR, '2020-04-01', '2026-04-01')
+SELECT DATEDIFF(WEEK, '2020-04-01', '2026-04-01')
+SELECT DATEDIFF(DAY, '2020-04-01', '2026-04-01')
+
+
+SELECT DATEADD(YEAR, 5, '2020-04-01')
+SELECT DATEADD(MONTH, 5, '2020-04-01')
